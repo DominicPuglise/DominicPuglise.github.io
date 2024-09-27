@@ -4,6 +4,10 @@ Welcome to my GitHub Pages website! This is a simple template to showcase your w
 
 ---
 
+tommy is a loser.
+
+
+
 ## About Me
 Hi, I'm **[Your Name]**, a [Your Profession/Title] from [Your Location]. I am passionate about [list your passions, e.g., software development, open source, machine learning]. 
 
