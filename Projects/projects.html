@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+             font-family: 'Roboto', sans-serif;
+             margin: 0;
+             background-color: #f0f4f8;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+             margin: 20px auto;
+             background: #fff;
+            padding: 30px;
+             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+             overflow: hidden;
+        }
+         .back-button-container {
+            text-align: left; /* Aligns button to the left */
+            padding-bottom: 20px;
+        }
+        .back-button {
+            display: inline-block; /* To allow for padding, margin, etc */
+            padding: 10px 20px;
+             background-color: #3498db;
+            color: #fff;
+            text-decoration: none; /* Remove underline */
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        h1 {
+             text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .project {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+        .project-title {
+           font-size: 1.8em;
+            font-weight: 500;
+            color: #3498db;
+            margin-bottom: 10px;
+         }
+        .project-description {
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #777;
+             line-height: 1.6;
+            text-align: justify;
+         }
+       .project-content {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+             gap: 20px;
+             align-items: flex-start;
+        }
+          .project-content p {
+            flex: 1 1 100%;
+             text-align: justify;
+            font-size: 1.1em;
+            color: #777;
+            line-height: 1.6;
+        }
+        .project-content img, .project-content video {
+             max-width: 30%;
+             height: auto;
+            margin-top: 10px;
+            border-radius: 8px;
+             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+         }
+       /* Styles for zoomed image and background blur*/
+       .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+             left: 0;
+           width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            overflow: auto;
+        }
+       .overlay.active {
+            display: flex;
+        }
+       .zoomed-image-container {
+           position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+           box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+         .zoomed-image, .zoomed-video {
+             max-width: 100%;
+             max-height: 90vh;
+             display: block;
+            margin: 0 auto;
+        }
+        .close-button, .prev-button, .next-button {
+            cursor: pointer;
+            position: absolute;
+           color: #fff;
+            font-size: 2em;
+            z-index: 1001;
+           background: rgba(0,0,0,0.3);
+            padding: 5px 10px;
+             border-radius: 5px;
+           user-select: none;
+           bottom: 30px;
+        }
+        .close-button {
+            right: 10px;
+            top: 10px;
+            bottom: initial;
+         }
+        .prev-button {
+           left: 50%;
+            transform: translateX(-100px);
+        }
+        .next-button{
+            right: 50%;
+             transform: translateX(100px);
+        }
+         .prev-button:hover, .next-button:hover, .close-button:hover{
+           background: rgba(0,0,0,0.5);
+        }
+        .prev-button.disabled, .next-button.disabled{
+           opacity: 0.5;
+           pointer-events: none;
+        }
+        .zoomed-title {
+            position: absolute;
+            bottom: 65px;
+             left: 50%;
+             transform: translateX(-50%);
+            color: #fff;
+            font-size: 1.3em;
+             font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        @media screen and (max-width: 900px) {
+             .container {
+                   width: 95%;
+                    padding: 20px;
+                }
+               .project-content img, .project-content video{
+                    max-width: 45%;
+                }
+         }
+        @media screen and (max-width: 600px) {
+             .project-content img, .project-content video {
+                   max-width: 100%;
+               }
+               .project-title {
+                   font-size: 1.5em;
+                 }
+               .project-description {
+                    font-size: 1em;
+                }
+              .project-content p {
+                    font-size: 1em;
+                }
+         }
+    </style>
+</head>
+<body>
+    <div class="container">
+         <div class="back-button-container">
+           <a href="../index.html" class="back-button">Back to Home</a>
+         </div>
+        <h1>Key Personal Projects</h1>
+
+        <div class="project">
+            <div class="project-title">Rack Mounted Variac</div>
+            <div class="project-description">
+                A major incentive for this project was to test the structural rigidity of a simple rack-mounted faceplate under torsional loading. This setup features a simple 3-Amp variable autotransformer matched with a 1:1 isolation transformer. The unit serves as a safe and dependable means of powering a variety of AC devices, with a simple rectifier extension for a rudimentary DC supply.
+            </div>
+            <div class="project-content">
+                <p>
+                    This project was largely intended to be a proof of concept as a cost-effective means of creating rack-mountable equipment. The faceplate itself consists of 1/8" thick aluminum with two 1.5"x15" steel angles welded to the backside. A stress analysis of the mechanical design was first performed through ANSYS, with a shearing load of X pounds applied to the steel angles, and a torsional load of 10 pound-foot was applied to the face to account for transformer overhang. The amount of true deformation on the faceplate was negligible.
+                </p>
+                <img src="PS_1.jpg" alt="Variac Front View" data-title="Variac Front">
+                <img src="PS_2.jpg" alt="Variac Back View" data-title="Variac Back">
+                <img src="PS_3.jpg" alt="Variac Internal View 1" data-title="Variac Internals 1">
+                <img src="PS_4.jpg" alt="Variac Internal View 2" data-title="Variac Internals 2">
+                <p>
+                    The end product agreed with the computer simulation and provided extremely satisfactory results, while remaining quite cheap (total cost of metal being under $X). This test of concept will allow for further homemade rack-mountable equipment pieces in the future, as well as an incremental step towards more complex self-fabricated power solutions.
+                </p>
+                <img src="PS_half.png" alt="Variac Stress Simulation" data-title="Variac Stress Analysis">
+                <img src="PS_half2.gif" alt="Variac Stress Simulation GIF" data-title="Variac Stress Simulation">
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-title">Vacuum Tube Amplifier</div>
+            <div class="project-description">
+                <p> I have always been interested in analog electronics, especially vacuum tube-based devices. I have built many basic solid-state amplifiers in the past, but I wanted to challenge myself with a tube amplifier.</p>
+                <p> Building my own amplifier from scratch—largely through trial and error—was an incredibly educational experience. Despite being my first vacuum tube amplifier, the result was impressive in both performance and aesthetics.</p>
+                <p> Using what I have learned from this project, I hope to take my work to the next level. My next audio project in the works is a hybrid subminiature-vacuum tube amplifier.</p>
+            </div>
+            <div class="project-content">
+                <img src="amplifier1.png" alt="Amplifier Front" data-title="Amplifier Front View">
+                <img src="amp_pic.jpg" alt="Amplifier Top View" data-title="Amplifier Top View">
+                <img src="amp_lid_off.jpg" alt="Amplifier Internal View" data-title="Amplifier Internals">
+                <video width="400" controls alt="Amplifier in Operation" data-title="Amplifier in Operation">
+                    <source src="amp_working.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <img src="amp_schematic.png" alt="Amplifier Schematic" data-title="Amplifier Schematic">
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-title">Discord Interactive Camera</div>
+            <div class="project-description">
+                This is a brief description of the project. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            </div>
+            <div class="project-content">
+                <p>Additional information about the project can be added here.</p>
+                <img src="discord_cam2.gif" alt="Interactive Camera Example" data-title="Interactive Camera GIF">
+                <img src="discord_cam1.png" alt="Interactive Camera Interface" data-title="Interactive Camera UI">
+            </div>
+        </div>
+    </div>
+</body>
+
+	<!--
+        <div class="project">
+             <div class="project-title">Discord Interactive Camera</div>
+             <div class="project-description">This is a brief description of the project.</div>
+           <div class="project-content">
+                <p>Additional information about the project can be added here.</p>
+               <img src="discord_cam2.gif" alt="Interactive Camera Example" data-title="Interactive Camera GIF">
+               <img src="discord_cam1.png" alt="Interactive Camera Interface" data-title="Interactive Camera UI">
+           </div>
+       </div
+-->
+
+       <div class="overlay">
+            <div class="zoomed-image-container">
+                   <span class="close-button">×</span>
+                   <span class="prev-button">❮</span>
+                   <div class="zoomed-content">
+                   </div>
+                  <span class="next-button">❯</span>
+                  <div class="zoomed-title"></div>
+            </div>
+        </div>
+   </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+              const projects = document.querySelectorAll('.project-content');
+            const overlay = document.querySelector('.overlay');
+            const zoomedContent = document.querySelector('.zoomed-content');
+             const closeButton = document.querySelector('.close-button');
+            const prevButton = document.querySelector('.prev-button');
+              const nextButton = document.querySelector('.next-button');
+             const zoomedTitle = document.querySelector('.zoomed-title');
+            let currentItemIndex = 0;
+             let currentItemList = [];
+            function showOverlay(item, itemList) {
+                overlay.classList.add('active');
+                zoomedContent.innerHTML = '';
+               if (item.tagName === 'IMG' || item.tagName === 'VIDEO') {
+                    const zoomedElement = document.createElement(item.tagName);
+                     zoomedElement.src = item.tagName === 'IMG' ? item.src : item.querySelector('source').src;
+                   if(item.tagName === 'VIDEO'){
+                       zoomedElement.controls = true;
+                    }
+                    zoomedElement.alt = item.alt;
+                   zoomedElement.classList.add(item.tagName === 'IMG' ? 'zoomed-image' : 'zoomed-video');
+                    zoomedContent.appendChild(zoomedElement);
+                  const title = item.getAttribute('data-title');
+                    zoomedTitle.textContent = title;
+                }
+                currentItemList = itemList;
+                 currentItemIndex = itemList.indexOf(item);
+                updateButtonState();
+            }
+            function hideOverlay() {
+                overlay.classList.remove('active');
+            }
+             function updateZoomedContent(){
+               zoomedContent.innerHTML = '';
+                const currentItem = currentItemList[currentItemIndex];
+               if (currentItem.tagName === 'IMG' || currentItem.tagName === 'VIDEO') {
+                     const zoomedElement = document.createElement(currentItem.tagName);
+                    zoomedElement.src = currentItem.tagName === 'IMG' ? currentItem.src : currentItem.querySelector('source').src;
+                   if(currentItem.tagName === 'VIDEO'){
+                       zoomedElement.controls = true;
+                    }
+                    zoomedElement.alt = currentItem.alt;
+                   zoomedElement.classList.add(currentItem.tagName === 'IMG' ? 'zoomed-image' : 'zoomed-video');
+                  zoomedContent.appendChild(zoomedElement);
+                    const title = currentItem.getAttribute('data-title');
+                   zoomedTitle.textContent = title;
+                }
+                updateButtonState();
+            }
+            function updateButtonState(){
+                 prevButton.classList.toggle('disabled', currentItemIndex === 0);
+                nextButton.classList.toggle('disabled', currentItemIndex === currentItemList.length - 1);
+            }
+             projects.forEach(project => {
+                 project.querySelectorAll('img, video').forEach(item =>{
+                     item.addEventListener('click', () => {
+                         const itemList = Array.from(project.querySelectorAll('img, video'));
+                         showOverlay(item, itemList);
+                     });
+                 });
+            });
+               closeButton.addEventListener('click', hideOverlay);
+            overlay.addEventListener('click', (e) => {
+               if(e.target === overlay) {
+                    hideOverlay();
+                }
+           });
+            prevButton.addEventListener('click', () => {
+               if(currentItemIndex > 0) {
+                    currentItemIndex--;
+                    updateZoomedContent();
+                }
+            });
+           nextButton.addEventListener('click', () => {
+               if(currentItemIndex < currentItemList.length - 1){
+                    currentItemIndex++;
+                   updateZoomedContent();
+               }
+           });
+        });
+    </script>
+</body>
+</html>
